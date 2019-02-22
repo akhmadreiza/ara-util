@@ -19,4 +19,10 @@ public class GeneralUtil {
         return dtf.format(LocalDateTime.now());
     }
 
+    public String changeDateFormat(String oldDateFormat){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(oldDateFormat, formatter);
+        return DateTimeFormatter.ofPattern("dd/MM/yy").format(dateTime);
+    }
+
 }
