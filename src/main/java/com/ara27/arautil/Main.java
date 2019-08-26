@@ -2,7 +2,12 @@ package com.ara27.arautil;
 
 import com.ara27.arautil.general.GeneralUtil;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+
 import static com.ara27.arautil.constants.DateFormatConstants.*;
 
 public class Main {
@@ -24,5 +29,31 @@ public class Main {
 
         System.out.println("oldDateFormat: 22-04-2018 18:05:58");
         System.out.println("newDateFormat: "+generalUtil.changeDateFormat("22-04-2018 18:05:58"));
+
+        DecimalFormat format = new DecimalFormat();
+        format.setMaximumFractionDigits(2);
+        format.setMinimumFractionDigits(0);
+
+        String testingFormat = format.format(0);
+        System.out.println(testingFormat);
+
+        String fileName = "disbursement-0000010-20190814.zip";
+        File file = new File("D:\\fileTest\\temp-dir\\filelist");
+        File[] files = file.listFiles();
+
+        for (File file1 : files) {
+            System.out.println(file1.getName());
+            if (file1.getName().contains(".rpt")) {
+                String fileName1 = file1.getName().substring(0, file1.getName().indexOf(".rpt"));
+                System.out.println(fileName1);
+                String[] fileNameArray = fileName1.split("-");
+                for (String s : fileName1.split("-")) {
+                    System.out.println(s);
+                }
+            }
+        }
+
+        System.out.println(fileName.substring(fileName.indexOf(".zip") - 8, fileName.indexOf(".zip")));
+        System.out.println(fileName.substring(0, fileName.indexOf(".zip")));
     }
 }
